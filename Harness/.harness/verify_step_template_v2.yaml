@@ -1,0 +1,48 @@
+template:
+  name: verify_step_template
+  identifier: verify_step_template
+  type: Step
+  projectIdentifier: PRE_QA_Frost
+  orgIdentifier: cvng
+  tags: {}
+  spec:
+    type: Verify
+    timeout: 2h
+    spec:
+      type: LoadTest
+      monitoredService:
+        type: Template
+        spec:
+          monitoredServiceTemplateRef: appd_template_fixed
+          versionLabel: v1
+          templateInputs:
+            type: Application
+            serviceRef: <+input>
+            environmentRef: <+input>
+      spec:
+        sensitivity: HIGH
+        duration: 5m
+        baseline: LAST
+        deploymentTag: test
+    failureStrategies:
+      - onFailure:
+          errors:
+            - Verification
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 2h
+              onTimeout:
+                action:
+                  type: StageRollback
+      - onFailure:
+          errors:
+            - Unknown
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 2h
+              onTimeout:
+                action:
+                  type: Ignore
+  versionLabel: v2
