@@ -157,3 +157,10 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        variables:
+          - name: resourceNamePrefix
+            type: String
+            value: single-health-source-tests
+          - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
+            type: Secret
+            value: org.appdagentaccesskey
