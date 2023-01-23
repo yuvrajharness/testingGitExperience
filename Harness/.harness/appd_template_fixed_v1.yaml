@@ -19,3 +19,34 @@ template:
           category: Deployment
           spec: {}
       healthSources:
+        - name: appd
+          identifier: appd
+          type: AppDynamics
+          spec:
+            applicationName: Harness-CI-Manager
+            tierName: manager
+            metricData:
+              Errors: true
+              Performance: true
+            metricDefinitions:
+              - identifier: appdMetric
+                metricName: appdMetric
+                completeMetricPath: Overall Application Performance|manager|Average Response Time (ms)
+                groupName: G1
+                completeServiceInstanceMetricPath: "|Individual Nodes|*|"
+                sli:
+                  enabled: true
+                analysis:
+                  riskProfile:
+                    riskCategory: Performance_ResponseTime
+                    thresholdTypes:
+                      - ACT_WHEN_HIGHER
+                  liveMonitoring:
+                    enabled: true
+                  deploymentVerification:
+                    enabled: true
+            feature: Application Monitoring
+            connectorRef: account.appdtest
+            metricPacks:
+              - identifier: Errors
+              - identifier: Performance
