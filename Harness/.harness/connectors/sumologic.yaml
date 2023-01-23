@@ -1,0 +1,11 @@
+connector:
+  name: sumologic
+  identifier: sumologic
+  description: ""
+  orgIdentifier: cvng
+  projectIdentifier: PRE_QA_Frost
+  type: SumoLogic
+  spec:
+    url: https://api.us2.sumologic.com/
+    accessIdRef: account.sumologic_log_access_id
+    accessKeyRef: account.sumologic_log_access_key
