@@ -16,6 +16,41 @@ pipeline:
             serviceDefinition:
               spec:
                 variables: []
+                manifests:
+                  - manifest:
+                      identifier: mf
+                      type: K8sManifest
+                      spec:
+                        store:
+                          type: Github
+                          spec:
+                            connectorRef: account.githubconnectorformt
+                            gitFetchType: Branch
+                            paths:
+                              - ng-automation/k8s/templates-cvng/deployment.yaml
+                              - ng-automation/k8s/templates-cvng/namespace.yaml
+                              - ng-automation/k8s/templates-cvng/service.yaml
+                            branch: master
+                        skipResourceVersioning: false
+                  - manifest:
+                      identifier: vmf
+                      type: Values
+                      spec:
+                        store:
+                          type: Github
+                          spec:
+                            connectorRef: account.githubconnectorformt
+                            gitFetchType: Branch
+                            paths:
+                              - ng-automation/k8s/valuesCVNG.yaml
+                            branch: master
+                artifacts:
+                  primary:
+                    spec:
+                      connectorRef: account.dockerconnectorformt
+                      imagePath: harness/todolist
+                      tag: praveen-cv-test
+                    type: DockerRegistry
               type: Kubernetes
           infrastructure:
             environmentRef: testGitX
