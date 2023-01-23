@@ -18,4 +18,35 @@ template:
           enabled: true
           category: Deployment
           spec: {}
-      healthSources: []
+      healthSources:
+        - name: appd
+          identifier: appd
+          type: AppDynamics
+          spec:
+            applicationName: <+input>
+            tierName: <+input>
+            metricData:
+              Errors: true
+              Performance: true
+            metricDefinitions:
+              - identifier: appdMetric
+                metricName: appdMetric
+                completeMetricPath: <+input>
+                groupName: G1
+                completeServiceInstanceMetricPath: <+input>
+                sli:
+                  enabled: true
+                analysis:
+                  riskProfile:
+                    riskCategory: Performance_ResponseTime
+                    thresholdTypes:
+                      - ACT_WHEN_HIGHER
+                  liveMonitoring:
+                    enabled: true
+                  deploymentVerification:
+                    enabled: true
+            feature: Application Monitoring
+            connectorRef: <+input>
+            metricPacks:
+              - identifier: Errors
+              - identifier: Performance
