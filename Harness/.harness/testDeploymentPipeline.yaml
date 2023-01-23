@@ -84,6 +84,17 @@ pipeline:
                         type: K8sCanaryDelete
                         timeout: 10m
                         spec: {}
+              - stepGroup:
+                  name: Primary Deployment
+                  identifier: primaryDepoyment
+                  steps:
+                    - step:
+                        name: Rolling Deployment
+                        identifier: rollingDeployment
+                        type: K8sRollingDeploy
+                        timeout: 10m
+                        spec:
+                          skipDryRun: false
               - step:
                   type: Verify
                   name: Verify_1
@@ -126,17 +137,6 @@ pipeline:
                             onTimeout:
                               action:
                                 type: Ignore
-              - stepGroup:
-                  name: Primary Deployment
-                  identifier: primaryDepoyment
-                  steps:
-                    - step:
-                        name: Rolling Deployment
-                        identifier: rollingDeployment
-                        type: K8sRollingDeploy
-                        timeout: 10m
-                        spec:
-                          skipDryRun: false
             rollbackSteps:
               - step:
                   name: Canary Delete
