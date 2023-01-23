@@ -1,0 +1,21 @@
+template:
+  name: GitX_PROJECT_runtime
+  identifier: GitX_PROJECT_runtime
+  versionLabel: v1
+  type: MonitoredService
+  projectIdentifier: PRE_QA_Frost
+  orgIdentifier: cvng
+  tags: {}
+  spec:
+    serviceRef: <+input>
+    environmentRef: <+input>
+    type: Application
+    sources:
+      changeSources:
+        - name: Harness CD Next Gen
+          identifier: harness_cd_next_gen
+          type: HarnessCDNextGen
+          enabled: true
+          category: Deployment
+          spec: {}
+      healthSources: []
