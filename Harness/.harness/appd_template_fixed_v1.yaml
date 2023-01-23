@@ -33,7 +33,7 @@ template:
                 metricName: appdMetric
                 completeMetricPath: Overall Application Performance|manager|Average Response Time (ms)
                 groupName: G1
-                completeServiceInstanceMetricPath: host
+                completeServiceInstanceMetricPath: "|Individual Nodes|*|"
                 sli:
                   enabled: true
                 analysis:
