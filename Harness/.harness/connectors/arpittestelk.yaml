@@ -1,0 +1,13 @@
+connector:
+  name: arpittestelk
+  identifier: arpittestelk
+  description: ""
+  orgIdentifier: cvng
+  projectIdentifier: PRE_QA_Frost
+  type: ElasticSearch
+  spec:
+    url: https://7f9ce7559228468a844a3da7d975983a.us-central1.gcp.cloud.es.io/
+    username: elastic
+    passwordRef: elksecret
+    apiKeyRef: null
+    authType: UsernamePassword
