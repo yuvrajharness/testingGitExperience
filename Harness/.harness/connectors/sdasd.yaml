@@ -1,0 +1,12 @@
+connector:
+  name: sdasd
+  identifier: sdasd
+  description: ""
+  orgIdentifier: cvng
+  projectIdentifier: PRE_QA_Frost
+  type: ElasticSearch
+  spec:
+    url: fsdfsdfsdf/
+    passwordRef: null
+    apiKeyRef: null
+    authType: None

@@ -1,0 +1,12 @@
+connector:
+  name: dfsdfds
+  identifier: dfsdfds
+  description: ""
+  orgIdentifier: cvng
+  projectIdentifier: PRE_QA_Frost
+  type: ElasticSearch
+  spec:
+    url: http://elk6.dev.harness.io:9200/
+    passwordRef: null
+    apiKeyRef: null
+    authType: None

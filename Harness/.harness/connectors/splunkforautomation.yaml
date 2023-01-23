@@ -1,0 +1,12 @@
+connector:
+  name: splunkforautomation
+  identifier: splunkforautomation
+  description: ""
+  orgIdentifier: cvng
+  projectIdentifier: PRE_QA_Frost
+  type: Splunk
+  spec:
+    splunkUrl: https://splunk.dev.harness.io:8089/
+    username: harnessadmin
+    accountId: -k53qRQAQ1O7DBLb9ACnjQ
+    passwordRef: splunk
