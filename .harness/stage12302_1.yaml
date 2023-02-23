@@ -1,0 +1,43 @@
+template:
+  name: stage12302
+  identifier: stage12302
+  versionLabel: "1"
+  type: Stage
+  projectIdentifier: templatetesting2
+  orgIdentifier: cvng
+  tags: {}
+  spec:
+    type: Deployment
+    spec:
+      serviceConfig:
+        serviceRef: <+input>
+        serviceDefinition:
+          spec:
+            variables: []
+          type: Kubernetes
+      infrastructure:
+        environmentRef: <+input>
+        infrastructureDefinition:
+          type: KubernetesDirect
+          spec:
+            connectorRef: <+input>
+            namespace: <+input>
+            releaseName: release-<+INFRA_KEY>
+        allowSimultaneousDeployments: false
+      execution:
+        steps:
+          - step:
+              type: ShellScript
+              name: Shell Script_1
+              identifier: ShellScript_1
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: echo ""
+                environmentVariables: []
+                outputVariables: []
+              timeout: 10m
+        rollbackSteps: []
