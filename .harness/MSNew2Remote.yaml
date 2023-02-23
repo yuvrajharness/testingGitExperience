@@ -1,6 +1,6 @@
 template:
-  name: MSNew2
-  identifier: MSNew2
+  name: MSNew2test
+  identifier: MSNew2test
   versionLabel: "1"
   type: MonitoredService
   projectIdentifier: templatetesting2
