@@ -1,0 +1,29 @@
+template:
+  name: MSNew
+  identifier: MSNew
+  versionLabel: "1"
+  type: MonitoredService
+  projectIdentifier: templatetesting2
+  orgIdentifier: cvng
+  spec:
+    serviceRef: <+input>
+    environmentRef: <+input>
+    type: Application
+    sources:
+      healthSources:
+        - name: appd
+          identifier: appd
+          type: AppDynamics
+          spec:
+            applicationName: <+input>
+            tierName: <+input>
+            metricData:
+              Errors: true
+              Performance: true
+            metricDefinitions: []
+            feature: Application Monitoring
+            connectorRef: <+input>
+            metricPacks:
+              - identifier: Errors
+              - identifier: Performance
+  tags: {}
