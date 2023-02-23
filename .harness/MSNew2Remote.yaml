@@ -1,0 +1,13 @@
+template:
+  name: MSNew2test
+  identifier: MSNew2test
+  versionLabel: "1"
+  type: MonitoredService
+  projectIdentifier: templatetesting2
+  orgIdentifier: cvng
+  spec:
+    serviceRef: <+input>
+    environmentRef: <+input>
+    type: Application
+    sources: {}
+  tags: {}
