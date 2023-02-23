@@ -1,0 +1,48 @@
+template:
+  name: teststepremote
+  identifier: teststepremote
+  versionLabel: "1"
+  type: Step
+  projectIdentifier: templatetesting2
+  orgIdentifier: cvng
+  tags: {}
+  spec:
+    type: Verify
+    timeout: 2h
+    spec:
+      isMultiServicesOrEnvs: false
+      type: Canary
+      monitoredService:
+        type: Template
+        spec:
+          monitoredServiceTemplateRef: MSNew2
+          versionLabel: "1"
+          templateInputs:
+            type: Application
+            serviceRef: <+input>
+            environmentRef: <+input>
+      spec:
+        sensitivity: <+input>
+        duration: <+input>
+        deploymentTag: <+artifacts.primary.tag>
+    failureStrategies:
+      - onFailure:
+          errors:
+            - Verification
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 2h
+              onTimeout:
+                action:
+                  type: StageRollback
+      - onFailure:
+          errors:
+            - Unknown
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 2h
+              onTimeout:
+                action:
+                  type: Ignore
