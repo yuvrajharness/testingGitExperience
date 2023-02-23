@@ -11,7 +11,7 @@ template:
     type: Application
     sources:
       healthSources:
-        - name: appd
+        - name: appdNew
           identifier: appd
           type: AppDynamics
           spec:
