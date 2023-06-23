@@ -1,0 +1,50 @@
+template:
+  name: Gitx Stage
+  identifier: Gitx_Stage
+  versionLabel: "1"
+  type: Stage
+  projectIdentifier: templatetesting2
+  orgIdentifier: cvng
+  tags: {}
+  spec:
+    type: Deployment
+    spec:
+      serviceConfig:
+        serviceRef: <+input>
+        serviceDefinition:
+          spec:
+            variables: []
+          type: Kubernetes
+      infrastructure:
+        environmentRef: <+input>
+        infrastructureDefinition:
+          type: KubernetesDirect
+          spec:
+            connectorRef: org.k8schiplayconnectorforautomation
+            namespace: test
+            releaseName: release-<+INFRA_KEY>
+        allowSimultaneousDeployments: false
+      execution:
+        steps:
+          - step:
+              name: Rollout Deployment
+              identifier: rolloutDeployment
+              type: K8sRollingDeploy
+              timeout: 10m
+              spec:
+                skipDryRun: false
+                pruningEnabled: false
+        rollbackSteps:
+          - step:
+              name: Rollback Rollout Deployment
+              identifier: rollbackRolloutDeployment
+              type: K8sRollingRollback
+              timeout: 10m
+              spec:
+                pruningEnabled: false
+    failureStrategies:
+      - onFailure:
+          errors:
+            - AllErrors
+          action:
+            type: StageRollback
