@@ -1,0 +1,43 @@
+template:
+  name: Gitx Template
+  type: MonitoredService
+  projectIdentifier: templatetesting2
+  orgIdentifier: cvng
+  tags: {}
+  spec:
+    serviceRef: <+input>
+    environmentRef: <+input>
+    type: Application
+    sources:
+      changeSources:
+        - name: Harness CD Next Gen
+          identifier: harness_cd_next_gen
+          type: HarnessCDNextGen
+          enabled: true
+          category: Deployment
+          spec: {}
+        - category: Deployment
+          type: HarnessCDNextGen
+          spec: {}
+          name: test10101010
+          identifier: test10101010
+      healthSources:
+        - name: appd
+          identifier: appd
+          type: AppDynamics
+          spec:
+            applicationName: <+input>
+            tierName: <+input>
+            metricData:
+              Errors: true
+              Performance: true
+            metricDefinitions: []
+            feature: Application Monitoring
+            connectorRef: <+input>
+            metricPacks:
+              - identifier: Errors
+                metricThresholds: []
+              - identifier: Performance
+                metricThresholds: []
+  identifier: Gitx_Template
+  versionLabel: "1"
